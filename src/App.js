@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from './salesforce-logo.svg';
 import './App.css';
 import ToDoList from './components/ToDoList';
 

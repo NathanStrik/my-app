@@ -1,17 +1,30 @@
 import React, { Component } from 'react';
 import ToDoItem from './ToDoItem.js';
+import InputField from './InputField.js';
 
 class ToDoList extends Component {
 
-    // Constructor method
-    constructor(props) {
-        super(props);
-        this.state = {
-            toDoItems: [ 
-            {id: 1, title:'React nog beter leren'}, 
-            {id: 2, title: 'Pizza\'s naar binnen harken'} 
-            ]
-        };
+    state = {
+        toDoItems: [ 
+        {id: 1, title: 'React leren'}
+        ]
+    };
+
+    // Add Todo item
+    addTodo = (newTodoItem) => {
+        if (newTodoItem.trim() !== '') {
+            console.log('Extra test');
+            const itemToAdd = {
+                id: 4,
+                title: newTodoItem
+            };
+            this.setState({ toDoItems: [...this.state.toDoItems, itemToAdd] });
+        }
+    }
+    
+    // Make a new Id number for Todo Item
+    getId = () => {
+        return this.state.toDoItems.length + 1;
     }
 
     // Render method
@@ -22,10 +35,11 @@ class ToDoList extends Component {
                 <ul>
                     {this.state.toDoItems.map( 
                         todo => (
-                            <ToDoItem title={todo.title}/>
+                            <ToDoItem key={todo.id} title={todo.title}/>
                         ) 
                     )}
                 </ul>
+                <InputField addTodo={this.addTodo}/>
             </div>
         );
     }
